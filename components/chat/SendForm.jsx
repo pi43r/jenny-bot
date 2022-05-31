@@ -23,7 +23,7 @@ const SendForm = memo(() => {
 				type: 'user'
 			})
 
-			askBot(prompt, text)
+			askBot({ prompt: prompt, question: text })
 
 			setText('')
 		},
