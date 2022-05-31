@@ -7,12 +7,14 @@ const useBot = () => {
 	const prompt = useStore((s) => s.prompt)
 	const isLoading = useStore((s) => s.isLoading)
 
-	const askBot = async (prompt, search) => {
+	const askBot = async (prompt, memory, search) => {
+		if(!memory) memory = ''
     useStore.setState({isLoading: true})
 		const res = await fetch('/api/openai', {
       body: JSON.stringify({
 				prompt: prompt,
-				search: search
+				search: search,
+				memory: memory
 			}),
 			headers: {
 				'Content-Type': 'application/json'

@@ -11,6 +11,7 @@ import UserMessage from './UserMessage'
 import BotMessage from './BotMessage'
 import SendForm from './SendForm'
 import Settings from './Settings'
+import Download from './Download'
 import BotStateIndicator from './BotStateIndicator'
 import { useEffect } from 'react'
 import { useRef } from 'react'
@@ -18,30 +19,27 @@ import useStore from 'helpers/store'
 
 const Example = memo(() => {
 	const messages = useMessages()
-
-	const [lastBotMessage, setLastBotMessage] = useState(null)
-
-	const [lastUserMessage, setLastUserMessage] = useState(null)
-
-	useOnBotMessage(setLastBotMessage)
-	useOnUserMessage(setLastUserMessage)
+	const sendMessage = useSendMessage()
 
 	const chatbox = useRef()
 	useEffect(() => {
 		if (!messages) return
-
 		useStore.setState({ chatLog: messages })
-		console.log(useStore.getState().chatLog)
 		if (chatbox && chatbox.current.lastChild) {
 			chatbox.current.lastChild.scrollIntoView('smooth')
 		}
 	}, [messages])
 
+	useEffect(() => {
+		const intro = "Hallo, ich bin Jenny. Ich möchte mit dir ein kurzes Interview für unsere nächste Ausgabe führen. Wie heißt du und was machst du beruflich?"
+		sendMessage({text: intro, type:'bot' })
+	},[])
+
 	return (
-		<div className="bg-slate-100 p-4 h-screen">
+		<div className="bg-yellow-300 p-4 h-screen">
 			<div
 				ref={chatbox}
-				className="h-4/6 overflow-y-scroll bg-white rounded-lg flex flex-col"
+				className="h-4/6 overflow-y-scroll bg-white rounded-lg flex flex-col border-2 border-black shadow-inner"
 			>
 				{Object.entries(messages).map(([time, message]) => {
 					if (message.type === 'user') {
@@ -69,6 +67,7 @@ const Example = memo(() => {
 			</div>
 			<div>
 				<Settings />
+				<Download />
 			</div>
 			{/* <div
 				style={{

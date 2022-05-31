@@ -3,7 +3,7 @@ import { memo } from 'react'
 
 const BotMessage = memo(({ timestamp, message: { text, meta } }) => (
   <div
-  className='bg-slate-300'
+  className='bg-yellow-300 shadow-hard'
     style={{
       alignSelf: 'flex-end',
       display: 'flex',
@@ -11,8 +11,6 @@ const BotMessage = memo(({ timestamp, message: { text, meta } }) => (
       margin: 16,
       padding: 16,
       borderRadius: 8,
-      boxShadow:
-        '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
     }}
   >
     <div style={{ padding: 8 }}>

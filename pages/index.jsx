@@ -1,7 +1,7 @@
 import {
 	ConversationProvider,
 	MessageReactionProvider,
-	MessageReactionCollection
+	MessageReactionCollection,
 } from 'react-conversation'
 
 import Chat from 'components/chat/UI'

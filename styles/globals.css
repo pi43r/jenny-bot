@@ -2,42 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  @apply text-stone-700;
+@font-face {
+	font-family: 'Spline';
+	src: url('/SplineSansMono-Regular.woff2') format('woff2');
+	font-style: normal;
 }
 
-a {
-  @apply text-purple-600;
-}
-a:hover {
-  @apply underline;
-}
-
-* {
-  box-sizing: border-box;
+@font-face {
+	font-family: 'Spline';
+	src: url('/SplineSansMono-Italic.woff2') format('woff2');
+	font-style: italic
 }
 
-h1 {
-  @apply text-4xl;
+@layer base {
+	html,
+	body {
+		@apply text-black;
+		font-family: 'Spline', system-ui, sans-serif;
+	}
+
+	a {
+		@apply text-purple-600;
+	}
+	a:hover {
+		@apply underline;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	h1 {
+		@apply text-4xl;
+	}
+
+	h2 {
+		@apply text-xl;
+	}
+
+	h3 {
+		@apply text-lg;
+	}
+
+	input {
+		@apply accent-purple-600 caret-purple-700 rounded-md;
+	}
 }
 
-h2 {
-  @apply text-xl;
-}
+@layer components {
+	.btn {
+		@apply border-2 border-purple-600 text-purple-600 accent-black p-2 rounded-lg;
+	}
 
-h3 {
-  @apply text-lg;
-}
-
-input {
-  @apply accent-purple-500 caret-purple-700 rounded-md;
-}
-
-.btn {
-  @apply font-bold py-2 px-4 rounded border border-purple-600 text-stone-700;
-}
-
-.btn:hover {
-  @apply bg-purple-600 text-stone-200;
+	.btn:hover {
+		@apply bg-purple-600 text-purple-200;
+	}
 }

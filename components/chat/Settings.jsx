@@ -13,7 +13,7 @@ const Settings = () => {
 		<>
 			{modal && (
 				<div className="absolute top-0 left-0 w-full p-4">
-					<div className="bg-slate-100 rounded-md shadow-lg p-2">
+					<div className="bg-yellow-300 border-2 border-black rounded-md shadow-xl p-2">
 						<div className="my-4">
 							<p>
 								Hier beschreibt ihr euren Charakter. Dieser <i>prompt</i> gibt
@@ -23,10 +23,9 @@ const Settings = () => {
 							</p>
 							<pre>
 								{`
-							[prompt]
-							Ich: [user input]
-							Bot: [output]
-							}
+								[prompt]
+								Ich: [user input]
+								Bot: [output]
 							`}
 							</pre>
 							<p>
@@ -42,7 +41,7 @@ const Settings = () => {
 						</div>
 						<textarea
 							id="prompt"
-							className="resize-none p-2 border border-stone-300 accent-purple-500 rounded-md w-full font-mono"
+							className="resize-none p-2 border border-stone-300 accent-purple-600 rounded-md w-full font-mono"
 							rows={9}
 							value={prompt}
 							onChange={(event) =>
@@ -51,7 +50,7 @@ const Settings = () => {
 						/>
 						<button
 							onClick={() => setModal(!modal)}
-							className="border border-slate-400 hover:bg-slate-400 hover:text-slate-100 p-2 rounded-lg"
+							className="btn my-4"
 						>
 							schließen
 						</button>
@@ -60,7 +59,7 @@ const Settings = () => {
 			)}
 			<button
 				onClick={() => setModal(!modal)}
-				className="border border-slate-400 hover:bg-slate-400 hover:text-slate-100 p-2 rounded-lg"
+				className="mr-2 btn"
 			>
 				Settings
 			</button>

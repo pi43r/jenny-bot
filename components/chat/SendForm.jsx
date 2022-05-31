@@ -14,29 +14,24 @@ const SendForm = memo(() => {
 		setText(event.target.value)
 	}, [])
 
-	const [type, setType] = useState('user')
-	const onChangeType = useCallback((event) => {
-		setType(event.target.value)
-	}, [])
-
 	const onSend = useCallback(
 		(event) => {
 			event.preventDefault()
-			if(text === '') return
+			if (text === '') return
 			sendMessage({
 				text,
-				type
+				type: 'user'
 			})
 
 			askBot(prompt, text)
 
 			setText('')
 		},
-		[sendMessage, text, type, prompt, askBot]
+		[sendMessage, text, prompt, askBot]
 	)
 
 	useEffect(() => {
-		if(data && data.text){
+		if (data && data.text) {
 			sendMessage({
 				text: data.text,
 				type: 'bot'
@@ -44,30 +39,21 @@ const SendForm = memo(() => {
 		}
 	}, [data])
 
-
-
 	return (
 		<form onSubmit={onSend}>
 			<textarea
-				className="resize-none p-2 border border-stone-300 accent-purple-500 rounded-md h-full w-full font-mono"
-				rows={8}
+				className="resize-none p-2 border-2 border-black accent-purple-600 rounded-md h-full w-full font-mono"
+				rows={7}
 				value={text}
 				onChange={onChangeText}
 				style={{ padding: 4, marginRight: 16 }}
+				placeholder="Schreibe deine Antwort und drücke dann auf senden."
 			/>{' '}
 			{/* <select onChange={onChangeType} style={{ padding: 4, marginRight: 16 }}>
 				<option value="user">User</option>
 				<option value="bot">Bot</option>
 			</select> */}
-			<button
-				type="submit"
-				className="border rounded-lg border-slate-600 hover:bg-slate-600 hover:text-slate-50"
-				style={{
-					padding: '8px 16px',
-					fontWeight: 'bold',
-					textTransform: 'uppercase'
-				}}
-			>
+			<button type="submit" className="font-bold uppercase mt-1 px-4 btn">
 				Send
 			</button>
 		</form>
