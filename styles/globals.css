@@ -17,7 +17,7 @@
 @layer base {
 	html,
 	body {
-		@apply text-black;
+		@apply text-black bg-yellow-300 h-screen;
 		font-family: 'Spline', system-ui, sans-serif;
 	}
 

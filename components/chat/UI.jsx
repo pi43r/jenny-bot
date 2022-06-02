@@ -31,45 +31,47 @@ const Example = memo(() => {
 	}, [messages])
 
 	useEffect(() => {
-		const intro = "Hallo, ich bin Jenny. Ich möchte mit dir ein kurzes Interview für unsere nächste Ausgabe führen. Wie heißt du und was machst du beruflich?"
-		sendMessage({text: intro, type:'bot' })
-	},[])
+		const intro =
+			'Hallo, ich bin Jenny. Ich möchte mit dir ein kurzes Interview für unsere nächste Ausgabe führen. Wie heißt du und was machst du beruflich?'
+		sendMessage({ text: intro, type: 'bot' })
+	}, [])
 
 	return (
-		<div className="bg-yellow-300 p-4 h-screen">
-			<div
-				ref={chatbox}
-				className="h-4/6 overflow-y-scroll bg-white rounded-lg flex flex-col border-2 border-black shadow-inner"
-			>
-				{Object.entries(messages).map(([time, message]) => {
-					if (message.type === 'user') {
+		<div className="flex justify-center w-full bg-yellow-300">
+			<div className="p-4 h-screen w-full max-w-6xl">
+				<div
+					ref={chatbox}
+					className="h-4/6 overflow-y-scroll bg-white rounded-lg flex flex-col border-2 border-black shadow-inner"
+				>
+					{Object.entries(messages).map(([time, message]) => {
+						if (message.type === 'user') {
+							return (
+								<UserMessage
+									key={`user-message-${time}`}
+									message={message}
+									timestamp={+time}
+								/>
+							)
+						}
+
 						return (
-							<UserMessage
-								key={`user-message-${time}`}
+							<BotMessage
+								key={`bot-message-${time}`}
 								message={message}
 								timestamp={+time}
 							/>
 						)
-					}
-
-					return (
-						<BotMessage
-							key={`bot-message-${time}`}
-							message={message}
-							timestamp={+time}
-						/>
-					)
-				})}
-				<BotStateIndicator />
-			</div>
-			<div style={{ padding: '16px 0' }}>
-				<SendForm />
-			</div>
-			<div>
-				<Settings />
-				<Download />
-			</div>
-			{/* <div
+					})}
+					<BotStateIndicator />
+				</div>
+				<div style={{ padding: '16px 0' }}>
+					<SendForm />
+				</div>
+				<div>
+					<Settings />
+					<Download />
+				</div>
+				{/* <div
 				style={{
 					backgroundColor: '#282828',
 					color: '#85e085',
@@ -83,6 +85,7 @@ const Example = memo(() => {
 					Last User Message: "{lastUserMessage?.text || 'N/A'}"
 				</div>
 			</div> */}
+			</div>
 		</div>
 	)
 })

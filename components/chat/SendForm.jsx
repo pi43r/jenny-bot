@@ -2,8 +2,10 @@ import { memo, useCallback, useState } from 'react'
 import { MessageType, useSendMessage } from 'react-conversation'
 import useBot from 'hooks/useBot'
 import { useEffect } from 'react'
-
+import createMemory from 'helpers/createMemory'
+import useStore from 'helpers/store'
 const SendForm = memo(() => {
+	const chatlog = useStore((s) => s.chatLog)
 	const sendMessage = useSendMessage()
 	const { askBot, data, prompt } = useBot()
 	// const prompt = useStore(s => s.prompt)
@@ -23,7 +25,10 @@ const SendForm = memo(() => {
 				type: 'user'
 			})
 
-			askBot({ prompt: prompt, question: text })
+			const memory = createMemory(chatlog, 4)
+			askBot({ prompt: prompt, question: text, memory: memory })
+
+
 
 			setText('')
 		},

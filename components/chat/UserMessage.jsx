@@ -15,6 +15,7 @@ const BotMessage = memo(({ timestamp, message: { text, meta } }) => (
   >
     <div style={{ padding: 8 }}>
       <div
+      className='max-w-xl'
         style={{
           display: 'flex',
           flexDirection: 'column',

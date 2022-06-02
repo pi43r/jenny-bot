@@ -1,29 +1,13 @@
 import { useState, useEffect } from 'react'
 import useStore from 'helpers/store'
+import createMemory from 'helpers/createMemory'
 
 const Download = () => {
 	const chatlog = useStore((s) => s.chatLog)
 
-	useEffect(() => {
-		console.log(chatlog)
-	}, [chatlog])
-
-	const createLog = () => {
-		const blob = new Blob([chatlog], { type: 'text/json' })
-		console.log(blob)
-		window.URL.createObjectURL(blob)
-	}
-
 	const saveTemplateAsFile = (filename, dataObjToWrite) => {
 
-		const txtlog = []
-
-		for (const key in dataObjToWrite){
-			txtlog.push(dataObjToWrite[key].type +': ' + dataObjToWrite[key].text)
-		}
-
-		txtlog = txtlog.join('\n')
-
+		const txtlog = createMemory(dataObjToWrite)
 		const blob = new Blob([txtlog], {
 			type: 'text/txt'
 		})
