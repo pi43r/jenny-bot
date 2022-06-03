@@ -68,7 +68,7 @@ const Example = memo(() => {
 					<SendForm />
 				</div>
 				<div>
-					<Settings />
+					{/* <Settings /> */}
 					<Download />
 				</div>
 				{/* <div

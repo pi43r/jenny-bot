@@ -3,7 +3,8 @@ const createMemory = (obj, lastnum) => {
 
 	for (const key in obj) {
 		const name = obj[key].type == 'bot' ? 'Jenny: ' : 'A: '
-		txtlog.push(name + obj[key].text.replace('\n', ''))
+		const text = obj[key].text.replaceAll('\n', '').trimStart()
+		txtlog.push(name + text)
 	}
 
 	let out
